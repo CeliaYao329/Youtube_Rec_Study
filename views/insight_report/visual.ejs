@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <title>Watch History Visualization</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js' type='text/javascript'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.js' type='text/javascript'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.32/dc.js' type='text/javascript'></script>
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/dc/2.0.0-beta.32/dc.css' rel='stylesheet' type='text/css'>
+
+    <script src="/lib/d3/d3.js" charset="utf-8"></script>
+    <script src="/lib/d3/d3.layout.cloud.js"></script>
+    <script src="/d3.wordcloud.js"></script>
+<!--    <script src="example.words.js"></script>-->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <style type="text/css"></style>
+
+    <style>
+        h4 span {
+          font-size:14px;
+          font-weight:normal;
+          }
+        h2 {
+          float: right;
+        }
+        h2 span {
+          font-size:14px;
+          font-weight:normal;
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class='row'>
+            <div class='span9' id='dc-time-chart'>
+              <h4>
+                Videos Frequency Per Day
+                  <a class="reset"
+                    href="javascript:timeChart.filterAll();dc.redrawAll();"
+                    style="display: none;">
+                    reset
+                  </a>
+              </h4>
+            </div>
+
+			<div class='span3' id='dc-dayweek-chart'>
+			  <h4>
+				Day of the Week
+				<span>
+				  <a class="reset"
+					href="javascript:dayOfWeekChart.filterAll();dc.redrawAll();"
+					style="display: none;">
+					reset
+				  </a>
+				</span>
+			  </h4>
+				<div class="clearfix"></div>
+			</div>
+
+        </div>
+
+        <div class='row'>
+            <div class='span8' id='dc-category-chart'>
+                <h4>Categories
+                    <span>
+                      <a class="reset"
+                        href="javascript:categoryChart.filterAll();dc.redrawAll();"
+                        style="display: none;">
+                        reset
+                      </a>
+                    </span>
+                </h4>
+            </div>
+			<div class="span4">
+				<div class="row">
+					<div class='span4' id='dc-category-chart2'>
+						<h4>Memories
+							<span>
+							  <a class="reset"
+								href="javascript:categoryChart2.filterAll();dc.redrawAll();"
+								style="display: none;">
+								reset
+							  </a>
+							</span>
+						</h4>
+					</div>
+				</div>
+				<div class="row">
+					<div class='span4' id='dc-category-chart3'>
+						<h4>Intentions
+							<span>
+							  <a class="reset"
+								href="javascript:categoryChart3.filterAll();dc.redrawAll();"
+								style="display: none;">
+								reset
+							  </a>
+							</span>
+						</h4>
+					</div>
+				</div>
+			</div>
+
+
+        </div>
+
+        <div class='row'>
+            <div class='span6' id='wordcloud-chart'>
+                <h4>Tags
+
+                </h4>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    var timeChart = dc.lineChart("#dc-time-chart");
+    var categoryChart = dc.pieChart("#dc-category-chart",);
+	var categoryChart2 = dc.pieChart("#dc-category-chart2");
+	var categoryChart3 = dc.pieChart("#dc-category-chart3");
+    var dayOfWeekChart = dc.rowChart("#dc-dayweek-chart");
+
+    var width = 900;
+    var height = 350;
+	var maxRadius = Math.min(width, height) / 2;
+	// bug
+    var svg = d3.select("#wordcloud-chart").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("id", "wordcloud-chart-svg")
+                    .append("g")
+                    .attr("id", "wordcloud-chart-group")
+                    .attr("transform", "translate(" + (width / 2) + "," + (height / 2) + ")");
+
+	var svg2 = d3.select("#wordcloud-chart-svg").append("g")
+		.attr("id", "test-chart-group")
+		.attr("transform", "translate(" + 400 + "," + (height / 2) + ")");
+
+    // load data from a csv file
+    var dtgFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
+    var dtgFormat2 = d3.time.format("%a %e %b %H:%M");
+    // var words = [];
+    var fill = d3.scale.category20b();
+    // var data = {{ data }};
+    // var data = JSON.parse(data);
+    var data = <%- JSON.stringify(data) %>;
+    // console.log(data);
+    data = JSON.parse(data);
+    // console.log(Object.keys(data));
+    // var data = JSON.parse(decodeURI("{{data}}"));
+    // var data = [{
+    //     category: "Music",
+    //     time: "2019-12-05 21:16:07",
+    //     is_intention: "not_intention",
+    //     is_memory: "not_memory",
+    //     id: "j-2hij11nL8",
+    //     tags: "['hireright', 'background checks', 'background check', 'hireright inc', 'asl', 'american sign language']",
+    //     categoryId: 26,
+    // }];
+    console.log("data" + data);
+    // d3.csv("/w.csv", function (data){
+        data.forEach(function(d) {
+            // d. id
+            // d. title
+            // d.category
+            // d.category id
+            // d.tags e.g. a string like: ['statistics', 'probability', 'conditional', 'math', 'college', 'finite', 'basic', "bayes'", 'theorem', 'explanation', 'tutorial', 'lesson', 'tutor']
+            d.view_time = dtgFormat.parse(d.time);
+            let video_tag_str = d.tags.substring(1, d.tags.length-1);
+            let video_tag_array = video_tag_str.split(',');
+            var tags = [];
+            for (let i=0; i<video_tag_array.length; i++) {
+                tags.push(video_tag_array[i].replace(/'/g, "").trim());
+            }
+            d.tag_array = tags;
+			// if(d.category == 'Education' || d.category == 'Entertainment')
+			// 	d.filtered_category = d.category;
+			// else
+			// 	d.filtered_category = "no";
+        });
+
+        var facts = crossfilter(data);
+        var all = facts.groupAll();
+
+        // time chart
+        var freqByDay = facts.dimension(function(d) {
+            return d3.time.day(d.view_time);
+        });
+        var freqByDayGroup = freqByDay.group()
+            .reduceCount(function(d) { return d.view_time; });
+
+        // Pie Chart
+        var categories = facts.dimension(function (d) {
+            return d.category;
+        });
+        var categoryGroup = categories.group();
+
+		var categories2 = facts.dimension(function (d) {
+			return d.is_memory; // d.filtered_category;
+		});
+		var categoryGroup2 = categories2.group();
+
+		var categories3 = facts.dimension(function (d) {
+			return d.is_intention; // d.filtered_category;
+		});
+		var categoryGroup3 = categories3.group();
+
+        // row chart Day of Week
+        var dayOfWeek = facts.dimension(function (d) {
+            var day = d.view_time.getDay();
+            switch (day) {
+              case 0:
+                return "0.Sun";
+              case 1:
+                return "1.Mon";
+              case 2:
+                return "2.Tue";
+              case 3:
+                return "3.Wed";
+              case 4:
+                return "4.Thu";
+              case 5:
+                return "5.Fri";
+              case 6:
+                return "6.Sat";
+            }
+          });
+        var dayOfWeekGroup = dayOfWeek.group();
+
+        var allDim = facts.dimension(function(d) {return d;});
+
+        // count all the facts
+        dc.dataCount(".dc-data-count")
+            .dimension(facts)
+            .group(all);
+
+        timeChart.width(720)
+            .height(220)
+            .transitionDuration(500)
+            //    .mouseZoomable(true)
+            .margins({top: 10, right: 10, bottom: 20, left: 40})
+            .dimension(freqByDay)
+            .group(freqByDayGroup)
+            //    .brushOn(false)			// added for title
+            .title(function(d){
+                console.log(d);
+                return dtgFormat2(d.data.key)
+                    + "\nNumber of Events: " + d.data.value;
+            })
+            .elasticY(true)
+            .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.view_time; })))
+            .xAxis();
+
+
+        // category pie chart
+        categoryChart.width(1000)
+            .height(500)
+            .radius(250)
+            .innerRadius(130)
+			.cx(300)
+			.cy(300)
+            .dimension(categories)
+            .title(function(d){return d.value;})
+            .group(categoryGroup)
+			.label(function(){return "";})
+			.legend(dc.legend().gap(8).itemWidth(140).horizontal(true))
+			// .externalLabels(50)
+          	.externalRadiusPadding(50)
+          	// .drawPaths(true)
+			// .minAngleForLabel(0)
+            .on('renderlet', function(){
+                let tag_freq = {};
+                _.each(allDim.top(Infinity), function (d){
+                    for (let i=0; i<d.tag_array.length; i++) {
+                        if (d.tag_array[i] in tag_freq) {
+                            tag_freq[d.tag_array[i]] += 1;
+                        }
+                        else {
+                            tag_freq[d.tag_array[i]] = 1;
+                        }
+                    }
+                });
+
+                var words = [];
+                for (var tag in tag_freq) {
+                    if (tag == "")
+                        continue ;
+                    if (tag_freq[tag] > 3) {
+                        words.push({text:tag, size:tag_freq[tag]});
+                    }
+                }
+                words = words.sort((a, b) => (a.size > b.size) ? -1 : 1);
+                console.log(words);
+
+                var top_words = words.slice(0, 20);
+                console.log(top_words);
+                var text_size_scale;
+                if (top_words.length > 0){
+                    text_size_scale =  d3.scale.linear()
+                          .domain([words[top_words.length-1].size, top_words[0].size])
+                          .range([20, 75]);
+
+                } else {
+                    text_size_scale = d3.scale.linear()
+                          .domain([0, 0])
+                          .range([20, 75]);
+                }
+                d3.layout.cloud().size([width, height])
+                            .words(top_words)
+                            .padding(1)
+                            .rotate(function() { return ~~(Math.random() * 2) * 0; })
+                            .font("times")
+                            .fontSize(function(d) { return text_size_scale(d.size); })
+                            .start();
+                draw(top_words);
+                // console.log(words);
+                // console.log(my_words);
+                // d3.wordcloud()
+                //     .size([500, 300])
+                //     .selector('#wordcloud-chart')
+                //     .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
+                //     .words(my_words)
+                //     .onwordclick(function(d, i) {
+                //         if (d.href) { window.location = d.href; }
+                //     })
+                //     .on("end", draw)
+                //     .start();
+
+
+
+                function draw(my_words) {
+                    console.log("draw");
+                    console.log(my_words);
+                    // var cloud_group = d3.select("#wordcloud-chart-group")
+                    //     .selectAll("text")
+                    //     .remove();
+                    d3.select("#wordcloud-chart-group")
+                         .selectAll("text")
+                         .remove();
+                    var cloud_group = d3.select("#wordcloud-chart-group")
+                                        .selectAll("text");
+
+                    cloud_group.data(my_words)
+                        .enter()
+                        .append("text")
+                        .transition()
+                        .duration(500)
+                        // .ease("elastic")
+                        .style("font-size", function(d) { return d.size + "px"; })
+                        .style("font-family", "times")
+                        .style('fill', function(d, i) {
+                            return fill(i);
+                        })
+                        .attr("text-anchor", "middle")
+                            .attr("color", "#884400")
+                    .   attr("transform", function(d) {
+                            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                        })
+                        .text(function(d) { return d.text; });
+
+                    console.log("after size: "+cloud_group.size());
+                }
+
+            });
+
+		// 	categoryChart.on('pretransition', function(chart) {
+      //     categoryChart.selectAll('.dc-legend-item text')
+      //         .text('')
+      //       .append('tspan')
+      //         .text(function(d) { return d.name; })
+      //       .append('tspan')
+      //         .attr('x', 100)
+      //         .attr('text-anchor', 'end')
+      //         .text(function(d) { return d.data; });
+      // });
+      // categoryChart.render();
+
+			// category pie chart
+			// console.log(typeod)
+			categoryChart2.width(250)
+				.height(220)
+				.radius(100)
+				.innerRadius(30)
+				.dimension(categories2)
+				// .colors(function(d){
+				// 	if(d.is_memory == "not_memory") return "#bbbbbb";
+				// 	return colorScale(d.is_memory); })
+				.title(function(d){return d.value;})
+				.group(categoryGroup2)
+
+			categoryChart3.width(250)
+				.height(220)
+				.radius(100)
+				.innerRadius(30)
+				.dimension(categories3)
+				.title(function(d){return d.value;})
+				.group(categoryGroup3)
+
+        // row chart day of week
+        dayOfWeekChart.width(300)
+            .height(220)
+            .dimension(dayOfWeek)
+            .group(dayOfWeekGroup)
+            .colors(d3.scale.category10())
+            .label(function (d){
+               return d.key.split(".")[1];
+            })
+            .title(function(d){return d.value;})
+            .elasticX(true)
+            .xAxis().ticks(4);
+
+
+        dc.renderAll();
+
+
+    // });
+</script>

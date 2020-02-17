@@ -1,0 +1,52 @@
+[ {
+  "contentDetails" : {
+    "videoId" : "qC5GjPxIt30",
+    "videoPublishedAt" : "2017-06-01T18:18:29.000Z"
+  },
+  "etag" : "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/RVocSFGhC-_5NgPsl4EWmoZXAK8\"",
+  "id" : "V0w2R291b2tkUm45RWNnaF9TT1FFWk53LjU2QjQ0RjZEMTA1NTdDQzY=",
+  "kind" : "youtube#playlistItem",
+  "snippet" : {
+    "channelId" : "UC6GouokdRn9Ecgh_SOQEZNw",
+    "channelTitle" : "Yixue Wang",
+    "description" : "",
+    "playlistId" : "WL6GouokdRn9Ecgh_SOQEZNw",
+    "position" : 0,
+    "publishedAt" : "2019-04-12T17:21:07.000Z",
+    "resourceId" : {
+      "kind" : "youtube#video",
+      "videoId" : "qC5GjPxIt30"
+    },
+    "thumbnails" : {
+      "default" : {
+        "height" : 90,
+        "url" : "https://i.ytimg.com/vi/qC5GjPxIt30/default.jpg",
+        "width" : 120
+      },
+      "high" : {
+        "height" : 360,
+        "url" : "https://i.ytimg.com/vi/qC5GjPxIt30/hqdefault.jpg",
+        "width" : 480
+      },
+      "maxres" : {
+        "height" : 720,
+        "url" : "https://i.ytimg.com/vi/qC5GjPxIt30/maxresdefault.jpg",
+        "width" : 1280
+      },
+      "medium" : {
+        "height" : 180,
+        "url" : "https://i.ytimg.com/vi/qC5GjPxIt30/mqdefault.jpg",
+        "width" : 320
+      },
+      "standard" : {
+        "height" : 480,
+        "url" : "https://i.ytimg.com/vi/qC5GjPxIt30/sddefault.jpg",
+        "width" : 640
+      }
+    },
+    "title" : "DBM Demo"
+  },
+  "status" : {
+    "privacyStatus" : "public"
+  }
+} ]

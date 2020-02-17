@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SDL-Video Recommendation Study</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/index_style.css" rel="stylesheet">
+
+    <!-- Facebook Pixel Code -->
+        <script>
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '976952019304608');
+          fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+          src="https://www.facebook.com/tr?id=976952019304608&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Facebook Pixel Code -->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+      <a class="navbar-brand" href="https://smalldata.io">SDL</a> <p class="navbar-brand">Video Recommendation Study</p>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Improve Your YouTube Recommendations: Research Study</h1>
+        <p style="font-size:130%;"> Do you feel that your YouTube feed and recommendations do not fit your interests? We are trying to improve video recommendations for you based on your interests and preferences.
+            <br> By participating in this study, you will receive emails with new recommendations for videos. This study will contribute to our understanding of how technology can be used to improve the recommendation for videos and other content for users. This study is approved by the Institutional Review Board (IRB) of Cornell University under protocol #1904008736.</p>
+        <h4>The survey will take less than 10 minutes. Participants will receive an email with YouTube recommendations regularly in the coming two months. Based on participant’s  engagement with our recommendation, she/he will enter a lottery with the chance to receive an Amazon gift card worth $50.<br></br></h4>
+          <p></p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button" onclick="consentShowUp()">Start</a></p>
+          <!-- <a class="btn btn-primary btn-lg" href="generic.ejs" role="button" >Log in &raquo;</a></p> -->
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Privacy statement</h2>
+          <p style="font-size:110%;">The data collected will only be used for this study. It will be de-identified and anonymized before analysis, and will be deleted after analysis. The data collected will be kept safely; only Cornell researchers on this study will have access to it. </p>
+        </div>
+        <div class="col-md-4">
+          <h2>Participant responsibilities</h2>
+          <p style="font-size:110%;">Participants will complete a survey during sign-up. In the coming 2 months, she/he will receive emails with recommended videos, followed by another online survey. Participants can discontinue the process by clicking the "Opt out" button or contacting the researchers.</p>
+       </div>
+        <div class="col-md-4">
+          <h2>Participant reward</h2>
+          <p style="font-size:110%;">We will deliver recommended videos through emails. A participant's likelihood of receiving the $50 Amazon gift card is proportional to the number of emails she/he has opened and the number of participants.</p>
+        </div>
+      </div>
+
+      <hr>
+
+    </div> <!-- /container -->
+
+
+
+    <!-- consent form -->
+    <div id="overlay">
+<!--        <div id="eligibilityCheck" class="alert alert-dark">-->
+<!--            <p>In order to be eligible for participation in this study, we need your YouTube watch history. <br> By default, YouTube will save it and you are eligible.-->
+<!--            </p>-->
+<!--            <img src="/assets/images/check-history.png" style="width:80%;height:50%;" alt="How to check watch history"></img>-->
+<!--            <br></br>-->
+<!--            <p><a class="btn btn-success btn-sm" href="#" role="button" onclick="consentShowUp()">Yes, I have history on YouTube.</a></p>-->
+<!--            <p><a class="btn btn-secondary btn-sm" href="/" id="not_eligible">Cancel</a></p>-->
+<!--        </div>-->
+        <div class="messagebox">
+            <h3>Participant consent</h3>
+            <p> We are asking you to participate in a research study titled “Study of intention-aware video recommendation”. This study is approved by the Institutional Review Board (IRB) of Cornell University under protocol #1904008736. This study is being led by Siyu Yao, Yixue Wang, Longqi Yang, and Hongyi Wen, Department of Computer Science and Information Science at Cornell University. The research mentor of the study is Michael Sobolev, Department of Computer Science at Cornell University. The faculty advisor of this study is Deborah Estrin, Department of Computer Science and Information Science at Cornell University. We will describe this study to you and answer any of your questions. </p>
+
+            <h4>Participant responsibilities</h4>
+    	    <p><em>The study will last two months, and the whole process will be conducted online. Participation includes:
+            <br>
+                1. Completing two surveys on this website at the beginning and the end of the study<br>
+                2. Throughout the two-month experiment period, agreeing to receive emails regularly with recommendations of YouTube videos <br>
+                3. Providing YouTube watch history data at the end of the study</em></p>
+
+            <h4>Risks and discomforts</h4>
+            <p> After uploading your YouTube watch history at the end of the study, your YouTube watch history will be accessed by our analytical tools. The raw data will be de-identified before analysis and deleted after analysis. We do not anticipate any physical risk of participating in this research.</p>
+
+            <h4>Benefits</h4>
+            <p> Through this study, we hope to learn more about video recommendation systems. Information from this study may contribute to better recommendation mechanisms, thus benefit you and other people's consuming experience of online content.<b> We will also provide an insight report of your video consumption at the end of the study, if you would like to upload your watch history.</b></p>
+
+            <h4>Compensation for participation</h4>
+            <p> Participants will enter a lottery with the chance to receive an Amazon gift card worth $50. The probability of getting the reward is based on the participant's involvement in the study. A Participant's involvement is evaluated by how many emails she/he opens during the experiment period.</p>
+            <h4>Privacy/Confidentiality/Data Security</h4>
+
+            <p> • The data collected will only be used for this study, and will be de-identified and anonymized before
+                analysis.<br>
+                • The data collected will be kept safely on a secure server, and only Cornell researchers on this study will have access to it.<br>
+                • We anticipate that your participation in this survey presents no greater risk than everyday use of the Internet.<br>
+                • Please note that email communication is neither private nor secure. Though we are taking precautions to protect your privacy, you should be aware that information sent through email could be read by a third party.<br>
+                • Your confidentiality will be kept to the degree permitted by the technology being used. We
+                cannot guarantee against interception of data sent via the internet by third parties. <br>
+                • De-identified data from this study may be shared with the research community at large to advance science and
+                health. We will remove any personal information that could identify you before files are shared with
+                other researchers to ensure that, by current scientific standards and known methods, no one will be able to
+                identify you from the information we share. Despite these measures, we cannot guarantee anonymity of your
+                personal data. </p>
+
+            <h4>Taking part is voluntary</h4>
+            <p> Your involvement is voluntary. You may refuse to participate before the study begins, discontinue at any
+                time, or skip any questions/procedures that may make you feel uncomfortable, with no penalty to you, and no
+                effect on the compensation earned before withdrawing, or your academic standing, record, or relationship
+                with the university or other organization or service that may be involved with the research. There will always
+                be a button on the right-top corner to discontinue the on-boarding process and no data will be recorded. During the experiment stage, you
+                can always contact the researchers to discontinue the process and all your data will be removed.
+                During the study, it is required for you to answer all survey or interview questions. You can choose not to participate if you are uncomfortable with
+                these conditions.</p>
+
+            <h4>Follow-up studies</h4>
+            <p> We may contact you at the end the study to request your participation in a follow-up study. As always, your participation
+                will be voluntary and we will ask for your explicit consent to participate in any of the follow-up
+                studies. </p>
+
+            <h4>Contact</h4>
+            <p> The main researchers conducting this study are Siyu Yao(sy684@cornell.edu) and Yixue Wang(yw2224@cornell.edu), who are graduate students at Cornell University.
+                Please ask any questions you have now. If you have questions later, you may contact us at sy684@cornell.edu and
+                yw2224@cornell.edu. If you have any questions or concerns regarding your
+                rights as a subject in this study, you may contact the Institutional Review Board (IRB) for Human
+                Participants at 607-255-5138 or access their website at http://www.irb.cornell.edu. You may also report your
+                concerns or complaints anonymously through Ethicspoint online at www.hotline.cornell.edu or by calling toll
+                free at 1-866-293-3077. Ethicspoint is an independent organization that serves as a liaison between the
+                University and the person bringing the complaint so that anonymity can be ensured.</p>
+
+            <p><b>I have read the above information, and have received answers to any questions I asked. I hereby give my consent to take
+                part in the study. Clicking "Accept" will lead you to a Google authentication page that will collect your email address for contact purposes. If you have multiple google accounts, please select the one you signed in on YouTube most.</b></p>
+
+            <a href="/auth/google"><button id="accept">Accept</button></a>
+            <a href="/"><button id="decline">Cancel</button></a>
+            <!-- <button class = "button alt" id="decline" onclick="backToIndex()">Cancel</button> -->
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <!-- <script src="../../dist/js/bootstrap.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../public/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script>
+        function consentShowUp() {
+            var overlay = document.querySelector("#overlay");
+             overlay.style.visibility = "visible";
+            var consent = document.querySelector(".messagebox");
+            consent.style.visibility = "visible";
+        }
+        function acceptConsent() {
+            document.querySelector("#overlay").style.visibility = "hidden";
+            window.location.href = "generic.html";
+        };
+        function backToIndex() {
+            document.querySelector("#overlay").style.visibility = "hidden";
+            window.location.href = "index.html";
+        };
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Personal info</title>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/progress.css"/>
+</head>
+
+<body>
+	<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+		<a class="navbar-brand" href="#">Video Rec for Good</a>
+	</nav>
+
+	<!-- MultiStep Form -->
+	<div class="row">
+	    <div class="col-md-12">
+	        <form id="msform" enctype="multipart/form-data">
+	            <!-- progressbar -->
+	            <ul id="progressbar">
+	                <li class="active">Survey</li>
+	                <li>Memory</li>
+	                <li>Aspiration</li>
+	                <li>Finished!</li>
+	            </ul>
+
+	            <!-- fieldsets -->
+	            <fieldset>
+	                <h2 class="fs-title">Basic Information</h2>
+	                <h3 class="fs-subtitle">Tell us something more about you</h3>
+
+					<div>
+					<p color="#8f0000"><b>Please turn on watch history on YouTube if you paused that: click on the History link in the upper-left menu and click "Turn on watch history" in the right column.</b></p>
+					</div>  
+					
+					<div class="form-group">
+					    <label>Preferred name</label>
+
+					    <textarea class="form-control" type="text" id="preferredName" name="preferredName" rows="1"></textarea>
+						<!-- <input class="form-control" type="text" id="preferredName" rows="1"> -->
+					  </div>
+
+					  <div>
+					    <label>According to your estimation, how often do you visit YouTube?</label>
+					    <select multiple class="form-control" id="visitFrequency" name="visitFrequency">
+					      <option>3-5 times a week</option>
+					      <option>6-10 times a week</option>
+					      <option>11-15 times a week</option>
+					      <option>More than 15 times a week</option>
+					    </select>
+					  </div>
+
+					  <div class="form-group">
+					    <label>Why do you goto YouTube? (Please select all that apply)</label>
+					    <div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Entertainment" type="checkbox" id="purposeEntertain" name="purpose">Entertainment</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+						  <input class="checkbox-text" value="Kill Time" type="checkbox" id="purposeKillTime" name="purpose">Kill time</input>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Wacth News" type="checkbox" id="purposeWatchNews" name="purpose">Wacth news</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Build skills" type="checkbox" id="purposeBuildSkills" name="purpose">Build skills</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Get trendy information" type="checkbox" id="purposeTrendyInfo" name="purpose">Get trendy information</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Explore different things" type="checkbox" id="purposeExplore" name="purpose">Explore different things</label>
+						</div>
+					  </div>
+
+					  <div class="form-group">
+					    <label>How do you feel the recommendation system of YouTube?</label>
+					    <select multiple class="form-control" id="feelAboutYoutubeRec" name="feelAboutYoutubeRec">
+					      <option>They are exactly what I want</option>
+					      <option>They are somewhat related to what I want</option>
+					      <option>They are not very related to what I want</option>
+					      <option>They are mostly unrelated</option>
+					    </select>
+					  </div>
+
+					  <div class="form-group">
+					    <label>How often do you watch the related videos recommended by YouTube after the end of one video?</label>
+					    <select multiple class="form-control" id="recWatchFrequency" name="recWatchFrequency">
+					      <option>Almost always</option>
+					      <option>Very often</option>
+					      <option>Sometime</option>
+					      <option>Seldom</option>
+					    </select>
+					  </div>
+
+					  <div class="form-group">
+					    <label>When do you prefer to receive the recommended videos? (Please select all that apply)</label>
+					    <div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Early morning (6am - 9am)" type="checkbox" id="timeSlot1" name="timeSlot">Early morning (6am - 9am)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Before noon (9am - 11am)" type="checkbox" id="timeSlot2" name="timeSlot">Before noon (9am - 11am)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Noon (11am - 2pm)" type="checkbox" id="timeSlot3" name="timeSlot">Noon (11am - 2pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Afternoon (2pm-5pm)" type="checkbox" id="timeSlot4" name="timeSlot">Afternoon (2pm-5pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Evening (5pm-7pm)" type="checkbox" id="timeSlot5" name="timeSlot">Evening (5pm-7pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Night (7pm - 10pm)" type="checkbox" id="timeSlot6" name="timeSlot">Night (7pm - 10pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Late night (10pm - 12am)" type="checkbox" id="timeSlot7" name="timeSlot">Late night (10pm - 12am)</label>
+						</div>
+					  </div>
+
+
+					<div class="form-group">
+					    <label>What is your occupation? (Optional)</label>
+					    <select class="form-control" id="occupation" name="occupation">
+					    	<option selected>Choose...</option>
+					    	<option>Architecture and Engineering</option>
+					    	<option>Arts, Design, Entertainment, Sports, and Media</option>
+					    	<option>Business and Financial Operations</option>
+					    	<option>Community and Social Service</option>
+					    	<option>Computer and Mathematical</option>
+					    	<option>Education, Training, and Library</option>
+					    	<option>Farming, Fishing, and Forestry</option>
+					    	<option>Food Preparation and Serving Related</option>
+					    	<option>Healthcare Practitioners</option>
+					    	<option>Life, Physical, and Social Science</option>
+					    	<option>Management</option>
+					    	<option>Mechanical and Repair Technology</option>
+					    	<option>Legal</option>
+					    	<option>Sales and Related</option>
+					    	<option>Transportation and Distribution</option>
+					    	<option>Rather not to tell</option>
+					    </select>
+					  </div>
+
+
+					<div class="form-group">
+					    <label>How would you describe your political attitude? (Optional) </label>
+					    <select multiple class="form-control" size="6" id="politicalAttitude" name="politicalAttitude">
+					      <option>Liberal</option>
+					      <option>Slightly more liberal</option>
+					      <option>Moderate</option>
+					      <option>Slightly more conservative</option>
+					      <option>Conservative</option>
+					      <option>Rather not to tell</option>
+					    </select>
+					  </div>
+
+	                <input type="button" name="next" class="next action-button" id="infoNext" value="Next"/>
+	            </fieldset>
+	            <fieldset>
+	                <h2 class="fs-title">What topics do you want to explore in the coming three months?<br> Please select  3-10 options</h2>
+		             <div class = "row">
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline">
+						      <input value="Education" type="checkbox" id="intendOpt1" name="intention">Education</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline">
+						      <input value="Entertainment" type="checkbox" id="intendOpt2" name="intention">Entertainment</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline">
+						      <input value="Family" type="checkbox" id="intendOpt3" name="intention">Family</label>
+						  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Film & animation" type="checkbox" id="intendOpt4" name="intention">Film & animation</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Animals" type="checkbox" id="intendOpt5" name="intention">Animals</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Food" type="checkbox" id="intendOpt6" name="intention">Food</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Gaming" type="checkbox" id="intendOpt7" name="intention">Gaming</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="How-to & Style" type="checkbox" id="intendOpt8" name="intention">How-to & Style</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Music" type="checkbox" id="intendOpt9" name="intention">Music</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="News & Politics" type="checkbox" id="intendOpt10" name="intention">News & Politics</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Nonprofits & Activism" type="checkbox" id="intendOpt11" name="intention">Nonprofits & Activism</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Science & Technology" type="checkbox" id="intendOpt12" name="intention">Science & Technology</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="People & Blogs" type="checkbox"  id="intendOpt13" name="intention">People & Blogs</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Sports" type="checkbox" id="intendOpt14" name="intention">Sports</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Travel & Events" type="checkbox" id="intendOpt15" name="intention">Travel & Events</label>
+					  </div>
+					</div>
+
+	                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+	                <input type="button" name="next" class="next action-button" id="intentionNext" value="Next"/>
+	            </fieldset>
+
+	        	<fieldset>
+	                <h2 class="fs-title">What topics did you watch on YouTube recently?<br> Please select at least 1 option</h2>
+		             <div class="row">
+						  <div class="col-sm-4 ">
+						    <label class="checkbox-inline">
+						      <input value="Education" type="checkbox" vid="memOpt1" name="memory">Education</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline">
+						      <input value="Entertainment" type="checkbox" id="memOpt2" name="memory">Entertainment</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline">
+						      <input value="Family" type="checkbox" id="memOpt3" name="memory">Family</label>
+						  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Film & animation" type="checkbox" id="memOpt4" name="memory">Film & animation</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Animals" type="checkbox" id="memOpt5" name="memory">Animals</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Food" type="checkbox" id="memOpt6" name="memory">Food</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Gaming" type="checkbox" id="memOpt7" name="memory">Gaming</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="How-to & Style" type="checkbox" id="memOpt8" name="memory">How-to & Style</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Music" type="checkbox" id="memOpt9" name="memory">Music</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="News & Politics" type="checkbox" id="memOpt10" name="memory">News & Politics</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Nonprofits & Activism" type="checkbox" id="memOpt11" name="memory">Nonprofits & Activism</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Science & Technology" type="checkbox" id="memOpt12" name="memory">Science & Technology</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="People & Blogs" type="checkbox" id="memOpt13" name="memory">People & Blogs</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Sports" type="checkbox" id="memOpt14" name="memory">Sports</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline">
+					      <input value="Travel & Events" type="checkbox" id="memOpt15" name="memory">Travel & Events</label>
+					  </div>
+					</div>
+
+	                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+	                <input type="button" name="next" class="next action-button" id="memNext" value="Next"/>
+	            </fieldset>
+	            <fieldset>
+	            	<h2>Congratualations! You are all set!</h2>
+	                <h4>Hope you will enjoy our recommendations</h4>
+	                <h4>The more often you open our emails, the higher chance of the reward!</h4>
+
+	            </fieldset>
+
+	        </form>
+	    </div>
+	</div>
+	<!-- /.MultiStep Form -->
+
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+
+<script type="text/javascript">
+	$("#infoNext").click(function(){
+		var preferredName = $('textarea#preferredName').val();
+		var visitFrequencyLth = document.getElementById('visitFrequency').options.length;
+		var feelAboutYoutubeRecLth = document.getElementById('feelAboutYoutubeRec').options.length;
+		var recWatchFrequencyLth =document.getElementById('recWatchFrequency').options.length;
+		// console.log(preferredName);
+		// console.log(document.getElementById('visitFrequency').options)
+
+		var timeslot_vals = []
+    	$('input:checkbox[name="timeSlot"]').each(function() {
+        	if (this.checked) {
+            	timeslot_vals.push(this.value);
+        	}
+    	});
+		var timeSlots = JSON.stringify({timeSlots: timeslot_vals});
+
+		var purpose_vals = []
+		$('input:checkbox[name="purpose"]').each(function() {
+        	if (this.checked) {
+            	purpose_vals.push(this.value);
+        	}
+    	});
+		purposes = JSON.stringify({purposes: purpose_vals});
+
+		if (preferredName == "" || visitFrequencyLth < 1 || feelAboutYoutubeRecLth < 1
+		|| recWatchFrequencyLth < 1 || timeslot_vals.length < 1 || purpose_vals.length < 1) {
+			alert("Please select all required fields!");
+			stop_flag = 1;
+			return;
+		} else {
+			stop_flag = 0;
+		}
+
+		var form = document.getElementById("msform");
+		var formdata = new FormData(form);
+		formdata.append('timeSlots', timeSlots);
+		formdata.append('purposes', purposes);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", "/upload/info");
+		request.send(formdata);
+	});
+</script>
+
+<script type="text/javascript">
+	var stop_flag = 0;
+	$("#fileNext").click(function(){
+		console.log("here at file Next clicked");
+		console.log($(this).hasClass('disabled'));
+		if($(this).hasClass('disabled')) {
+        	alert('Please upload your takeout file!');
+			stop_flag = 1;
+			return;
+    	} else {
+			stop_flag = 0;
+		}
+	});
+</script>
+
+<script type="text/javascript">
+	var stop_flag = 0;
+	$("#intentionNext").click(function(){
+		console.log("here at intention Next clicked");
+		var elems = $('[id^=intendOpt]').filter(':checked');
+		if (elems.length < 3){
+			alert("Please select at least 3 topics");
+			stop_flag = 1;
+			return;
+		}
+		else if (elems.length > 10){
+			alert("Please select at most 10 topics");
+			stop_flag = 1;
+			return;
+		}
+		else{
+			stop_flag = 0;
+		}
+
+		vals = []
+		$('input:checkbox[name="intention"]').each(function() {
+        	if (this.checked) {
+            	vals.push(this.value);
+        	}
+    	});
+		intentions = JSON.stringify({intentions: vals});
+
+		var form = document.getElementById("msform");
+		var formdata = new FormData(form);
+		formdata.append('intentions', intentions);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", "/upload/intention");
+		request.send(formdata);
+
+	});
+</script>
+
+<script type="text/javascript">
+	$("#memNext").click(function(){
+		console.log("here at mem Next clicked");
+		var elems = $('[id^=memOpt]').filter(':checked');
+		console.log(elems.length);
+		if (elems.length < 1){
+			alert("Please select at least 1 topic.");
+			stop_flag = 1;
+			return;
+		}
+		else{
+			stop_flag = 0;
+		}
+
+		vals = []
+		$('input:checkbox[name="memory"]').each(function() {
+        	if (this.checked) {
+            	vals.push(this.value);
+        	}
+    	});
+		memories = JSON.stringify({memories: vals});
+
+		var form = document.getElementById("msform");
+		var formdata = new FormData(form);
+		formdata.append('memories', memories);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", "/upload/memory");
+		request.send(formdata);
+	});
+</script>
+
+<script type="text/javascript">
+    //jQuery time
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+    $(".next").click(function () {
+    	if (stop_flag > 0) return false;
+        if (animating) return false;
+        animating = true;
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+                //2. bring next_fs from the right(50%)
+                left = (now * 50) + "%";
+                //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+                    'transform': 'scale(' + scale + ')',
+                    'position': 'absolute'
+                });
+                next_fs.css({'left': left, 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(".previous").click(function () {
+        if (animating) return false;
+        animating = true;
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        //show the previous fieldset
+        previous_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+                //2. take current_fs to the right(50%) - from 0%
+                left = ((1 - now) * 50) + "%";
+                //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(".submit").click(function () {
+        return false;
+    })
+</script>
+
+<script>
+    function bs_input_file() {
+        $(".input-file").before(
+            function () {
+                if (!$(this).prev().hasClass('input-ghost')) {
+                    var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+                    element.attr("name", $(this).attr("name"));
+                    element.change(function () {
+                        element.next(element).find('input').val((element.val()).split('\\').pop());
+                    });
+                    $(this).find("button.btn-choose").click(function () {
+                        element.click();
+                    });
+                    $(this).find("button.btn-reset").click(function () {
+                        element.val(null);
+                        $(this).parents(".input-file").find('input').val('');
+                    });
+                    $(this).find('input').css("cursor", "pointer");
+                    $(this).find('input').mousedown(function () {
+                        $(this).parents('.input-file').prev().click();
+                        return false;
+                    });
+                    return element;
+                }
+            }
+        );
+    }
+	$(function () {
+        bs_input_file();
+    });
+</script>
+
+<script type="text/javascript">
+	// The Browser API key obtained from the Google API Console.
+	var developerKey = 'AIzaSyDDK_L9y88sbUQBL8PC0wr6zYmNdAik_hw';
+	// The Client ID obtained from the Google API Console.
+	var clientId = '1021222270760-o4opjt5b9ejea92voiiblnaoevfjoelo.apps.googleusercontent.com';
+	// Scope to use to access user's photos.
+	var scope = 'https://www.googleapis.com/auth/drive.file';
+	var pickerApiLoaded = false;
+	var oauthToken;
+	var token;
+	// Use the API Loader script to load google.picker and gapi.auth.
+
+	function onApiLoad() {
+		gapi.load('auth2', onAuthApiLoad);
+        gapi.load('picker', onPickerApiLoad);
+    }
+    function onAuthApiLoad() {
+		var authBtn = document.getElementById('submit-drive-file');
+        authBtn.disabled = false;
+        authBtn.addEventListener('click', function() {
+			gapi.auth2.init({ client_id: clientId }).then(function(googleAuth) {
+            	googleAuth.signIn({ scope: scope }).then(function(result) {
+					handleAuthResult(result.getAuthResponse());
+            	})
+        	})
+		});
+    }
+	function onPickerApiLoad() {
+		pickerApiLoaded = true;
+        createPicker();
+    }
+    function handleAuthResult(authResult) {
+    	if (authResult && !authResult.error) {
+        	token = authResult;
+        	console.dir(authResult);
+          	oauthToken = authResult.access_token;
+          	createPicker();
+        }
+    }
+	// Create and render a Picker object for picking user Photos.
+    function createPicker() {
+		if (pickerApiLoaded && oauthToken) {
+        var picker = new google.picker.PickerBuilder().
+			addView(google.picker.ViewId.DOCS).
+			setOAuthToken(oauthToken).
+			setDeveloperKey(developerKey).
+			setCallback(pickerCallback).
+			build();
+			picker.setVisible(true);
+		}
+	}
+	// A simple callback implementation.
+	function pickerCallback(data) {
+		var url = 'nothing';
+        var docID;
+        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+        	var doc = data[google.picker.Response.DOCUMENTS][0];
+        	url = doc[google.picker.Document.URL];
+          	docID = doc[google.picker.Document.ID];
+        }
+        document.getElementById('file-from-drive').innerHTML = docID;
+        postRequest(doc);
+    }
+	function printFile(fileId) {
+		console.log(fileId);
+		gapi.client.load('drive', 'v3', callback);
+  		var request = gapi.client.drive.files.get({
+    		'fileId': fileId,
+			'alt': media
+  		});
+  		request.execute(function(resp) {
+			console.log(resp);
+    		console.log('Title: ' + resp.title);
+    		console.log('Description: ' + resp.description);
+    		console.log('MIME type: ' + resp.mimeType);
+  	  	});
+	}
+
+    function postRequest(doc) {
+		const data = JSON.stringify({
+        	docID: doc[google.picker.Document.ID],
+            docURL: doc[google.picker.Document.URL],
+		  	docName: doc[google.picker.Document.NAME],
+            token: token
+        });
+		var request = new XMLHttpRequest();
+  		request.open("POST", "/upload/drive");
+		request.setRequestHeader('content-type', 'application/json');
+		request.onreadystatechange = function(){
+        	if ( request.readyState === 4 && request.status === 200) {
+  				if (request.status == 200) {
+  					alert (request.responseText);
+					$('#fileNext').removeClass('disabled');
+  				} else {
+  					alert("Fail. Please try again.");
+  				}
+  			}
+        };
+  		request.send(data);
+    }
+</script>
+
+<script type="text/javascript">
+	var form = document.getElementById("msform");
+	document.getElementById("submit-local-file").addEventListener("click", function () {
+		var filename = document.getElementById("file-from-local").value;
+		if (filename == "") {
+			alert("Please select your takeout file!");
+		} else {
+			form.action='/upload/local';
+			form.method = "post";
+			form.enctype="multipart/form-data";
+			var formdata = new FormData(form);
+
+			var request = new XMLHttpRequest();
+			request.open("POST", "/upload/local");
+			request.send(formdata);
+
+			request.onreadystatechange = function() {
+	            if ( request.readyState === 4 && request.status === 200) {
+					if (request.status == 200) {
+						alert(request.responseText);
+						$('#fileNext').removeClass('disabled');
+					} else {
+						alert("Fail. Please try again.");
+					}
+				}
+	        };
+		}
+	});
+</script>
+
+<script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+
+</body>
+</html>

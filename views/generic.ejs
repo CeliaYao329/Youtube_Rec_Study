@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SDL-Video Recommendation Study</title>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!--    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/progress.css"/>
+
+	<!-- Facebook Pixel Code -->
+	<script>
+	  !function(f,b,e,v,n,t,s)
+	  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	  n.queue=[];t=b.createElement(e);t.async=!0;
+	  t.src=v;s=b.getElementsByTagName(e)[0];
+	  s.parentNode.insertBefore(t,s)}(window, document,'script',
+	  'https://connect.facebook.net/en_US/fbevents.js');
+	  fbq('init', '976952019304608');
+	  // fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	  src="https://www.facebook.com/tr?id=976952019304608&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse bg-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://smalldata.io">SDL</a> <p class="navbar-brand">Video Recommendation Study</p>
+            </div>
+	  <!-- <input type="button" name="quit" class="quit action-button" id="quit" value="Quit"/> -->
+            <div class="nav navbar-nav navbar-right" id="quit_containter">
+				<button id="quit" class="btn btn-secondary navbar-btn">Opt out</button></a>
+            </div>
+        </div>
+    </nav>
+
+	<!-- MultiStep Form -->
+	<div class="row">
+	    <div class="col-md-12">
+	        <form id="msform" enctype="multipart/form-data">
+	            <!-- progressbar -->
+	            <ul id="progressbar">
+	                <li class="active">Survey</li>
+	                <li>Intention</li>
+	                <li>Memory</li>
+<!--					<li>Previous Take-out</li>-->
+	                <li>Finished!</li>
+	            </ul>
+
+	            <!-- fieldsets -->
+	            <fieldset>
+	                <h2 class="fs-title">Basic personal information</h2>
+	                <h3 class="fs-subtitle">The data collected will only be used for this study, and will be de-identified and anonymized before
+                analysis.</h3>
+
+					<div class="form-group">
+					    <label>Preferred name</label>
+
+					    <textarea class="form-control" type="text" id="preferredName" name="preferredName" rows="1"></textarea>
+					  </div>
+
+					  <div class="form-group">
+					    <label>According to your estimation, how often do you visit YouTube?</label>
+					    <select multiple class="form-control" id="visitFrequency" name="visitFrequency">
+							<option>Less than 3 times a week</option>
+							<option>3-5 times a week</option>
+					      	<option>6-10 times a week</option>
+					      	<option>More than 10 times a week</option>
+					    </select>
+					  </div>
+
+					  <div class="form-group">
+					    <label>Why do you go to YouTube? (Please select all that apply)</label>
+					    <div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Entertainment" type="checkbox" id="purposeEntertain" name="purpose">Entertainment</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+						  <input class="checkbox-text" value="Kill Time" type="checkbox" id="purposeKillTime" name="purpose">Kill time</input>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Wacth News" type="checkbox" id="purposeWatchNews" name="purpose">Watch news</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Build skills" type="checkbox" id="purposeBuildSkills" name="purpose">Build skills</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Get trending information" type="checkbox" id="purposeTrendyInfo" name="purpose">Get trending information</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Explore different things" type="checkbox" id="purposeExplore" name="purpose">Explore new topics</label>
+						</div>
+					  </div>
+
+					  <div class="form-group">
+					    <label>How relevant are the recommended videos on YouTube for you?</label>
+					    <select multiple size="5" class="form-control" id="feelAboutYoutubeRec" name="feelAboutYoutubeRec">
+					      	<option>They are always what I want</option>
+					      	<option>They are relevant to what I want in most cases</option>
+							<option>They are often relevant to what I want</option>
+					      	<option>They are seldom relevant to what I want</option>
+					      	<option>They are always irrelevant</option>
+					    </select>
+					  </div>
+
+					  <div class="form-group">
+					    <label>What do you LIKE about recommended videos on Youtube? (Optional)</label>
+					    <textarea class="form-control" type="text" id="like" name="like"></textarea>
+					  </div>
+
+					  <div class="form-group">
+					    <label>What do you DISLIKE about recommended videos on Youtube? (Optional)</label>
+					    <textarea class="form-control" type="text" id="dislike" name="dislike"></textarea>
+					  </div>
+
+					  <div class="form-group">
+					    <label>How often do you watch the related videos recommended by YouTube after the end of a video?</label>
+					    <select multiple size="5" class="form-control" id="recWatchFrequency" name="recWatchFrequency">
+					        <option>Almost always</option>
+					        <option>Very often</option>
+                            <option>In some cases</option>
+					        <option>Seldom</option>
+					        <option>Never</option>
+					    </select>
+					  </div>
+
+					  <div class="form-group">
+					    <label>When do you prefer to receive recommendations from us via email? (Please select all that apply)</label>
+					    <div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Morning (Before 11am)" type="checkbox" id="timeSlot1" name="timeSlot">Early Morning (Before 9am)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Noon (11am - 2pm)" type="checkbox" id="timeSlot2" name="timeSlot">Morning (9am - 12pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Afternoon (2pm - 5pm)" type="checkbox" id="timeSlot3" name="timeSlot">Afternoon (12pm - 5pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Evening (5pm-8pm)" type="checkbox" id="timeSlot4" name="timeSlot">Evening (5pm-8pm)</label>
+						</div>
+						<div class="form-check form-check-inline move-left">
+						  <label class="checkbox-inline">
+					      <input value="Night (After 8pm)" type="checkbox" id="timeSlot5" name="timeSlot">Night (After 8pm)</label>
+						</div>
+					  </div>
+
+					  <div class="form-group">
+					    <label>Which timezone best applies for you in order to receive recommendations?</label>
+					    <select multiple size="4" class="form-control" id="timezone" name="timezone">
+					        <option>Eastern time</option>
+							<option>Central time</option>
+					        <option>Mountain time</option>
+                            <option>Pacific time</option>
+					    </select>
+					  </div>
+
+
+					<div class="form-group">
+					    <label>What is your occupation? (Optional)</label>
+					    <select class="form-control" id="occupation" name="occupation">
+					    	<option selected>Choose...</option>
+					    	<option>Architecture and Engineering</option>
+					    	<option>Arts, Design, Entertainment, Sports, and Media</option>
+					    	<option>Business and Financial Operations</option>
+					    	<option>Community and Social Service</option>
+					    	<option>Computer and Mathematical</option>
+					    	<option>Education, Training, and Library</option>
+					    	<option>Farming, Fishing, and Forestry</option>
+					    	<option>Food Preparation and Serving Related</option>
+					    	<option>Healthcare Practitioners</option>
+					    	<option>Life, Physical, and Social Science</option>
+					    	<option>Management</option>
+					    	<option>Mechanical and Repair Technology</option>
+					    	<option>Legal</option>
+					    	<option>Sales and Related</option>
+					    	<option>Transportation and Distribution</option>
+							<option>Others</option>
+					    	<option>Rather not to tell</option>
+					    </select>
+					  </div>
+
+
+	                <input type="button" name="next" class="next action-button" id="infoNext" value="Next"/>
+	            </fieldset>
+	            <fieldset>
+	                <h2 class="fs-title">What topics do you want to explore in the coming two months?<br> Please select  3-10 options</h2>
+		             <div class = "row">
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline move-left">
+						      <input value="Cars & Vehicles" type="checkbox" id="intendOpt1" name="intention">Cars & Vehicles</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline move-left">
+						      <input value="Comedy" type="checkbox" id="intendOpt2" name="intention">Comedy</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline move-left">
+						      <input value="Education" type="checkbox" id="intendOpt3" name="intention">Education</label>
+						  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Entertainment" type="checkbox" id="intendOpt4" name="intention">Entertainment</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Film & animation" type="checkbox" id="intendOpt5" name="intention">Film & animation</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Gaming" type="checkbox" id="intendOpt6" name="intention">Gaming</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="How-to & Style" type="checkbox" id="intendOpt7" name="intention">How-to & Style</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Music" type="checkbox" id="intendOpt8" name="intention">Music</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="News & Politics" type="checkbox" id="intendOpt9" name="intention">News & Politics</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Nonprofits & Activism" type="checkbox" id="intendOpt10" name="intention">Nonprofits & Activism</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="People & Blogs" type="checkbox" id="intendOpt11" name="intention">People & Blogs</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Pets & Animals" type="checkbox" id="intendOpt12" name="intention">Pets & Animals</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					    <div class="col-sm-4">
+					     <label class="checkbox-inline move-left">
+					       <input value="Science & Technology" type="checkbox"  id="intendOpt13" name="intention">Science & Technology</label>
+					   </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Sports" type="checkbox" id="intendOpt14" name="intention">Sports</label>
+					  </div>
+					   <div class="col-sm-4">
+						<label class="checkbox-inline move-left">
+						  <input value="Travel & Events" type="checkbox" id="intendOpt15" name="intention">Travel & Events</label>
+					   </div>
+					</div>
+
+	                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+	                <input type="button" name="next" class="next action-button" id="intentionNext" value="Next"/>
+	            </fieldset>
+
+	        	<fieldset>
+	                <h2 class="fs-title">What topics did you watch on YouTube recently?<br> Please select at least 1 option</h2>
+		             <div class="row">
+						    <div class="col-sm-4 ">
+						     <label class="checkbox-inline move-left">
+						       <input value="Cars & Vehicles" type="checkbox" id="memOpt1" name="memory">Cars & Vehicles</label>
+						   </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline move-left">
+						      <input value="Comedy" type="checkbox" id="memOpt2" name="memory">Comedy</label>
+						  </div>
+						  <div class="col-sm-4">
+						    <label class="checkbox-inline move-left">
+						      <input value="Education" type="checkbox" id="memOpt3" name="memory">Education</label>
+						  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Entertainment" type="checkbox" id="memOpt4" name="memory">Entertainment</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Film & animation" type="checkbox" id="memOpt5" name="memory">Film & animation</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Gaming" type="checkbox" id="memOpt6" name="memory">Gaming</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="How-to & Style" type="checkbox" id="memOpt7" name="memory">How-to & Style</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Music" type="checkbox" id="memOpt8" name="memory">Music</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="News & Politics" type="checkbox" id="memOpt9" name="memory">News & Politics</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Nonprofits & Activism" type="checkbox" id="memOpt10" name="memory">Nonprofits & Activism</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="People & Blogs" type="checkbox" id="memOpt11" name="memory">People & Blogs</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Pets & Animals" type="checkbox" id="memOpt12" name="memory">Pets & Animals</label>
+					  </div>
+					</div>
+
+					<div class="row">
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Science & Technology" type="checkbox" id="memOpt13" name="memory">Science & Technology</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Sports" type="checkbox" id="memOpt14" name="memory">Sports</label>
+					  </div>
+					  <div class="col-sm-4">
+					    <label class="checkbox-inline move-left">
+					      <input value="Travel & Events" type="checkbox" id="memOpt15" name="memory">Travel & Events</label>
+					  </div>
+					</div>
+
+	                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+	                <input type="button" name="next" class="next action-button" id="memNext" value="Next"/>
+	            </fieldset>
+
+<!--				<fieldset>-->
+<!--					<h2 class="fs-title">Watch history on YouTube</h2>-->
+<!--	                <h3 class="fs-subtitle">Your watch history on YouTube is needed for this study. <b style="color:red;text-decoration: underline;font-weight:bold;"> The data collected will be de-identified and anonymized before-->
+<!--               any analysis. It will be deleted after analysis. </b></h3>-->
+
+<!--					<p>Please visit <a href="https://takeout.google.com/settings/takeout/custom/youtube" target="_blank">YouTube Takeout-->
+<!--	                        Website</a> and make sure that your google account is signed in. At the first step, instead of selecting "All YouTube data included", please just select "history". Then, you can create your YouTube take-out, download from your email, and upload here.</p>-->
+
+<!--					<a onclick="instructionShowUp()"> <button type="button" class="btn btn-info">Step-by-step instruction. </button></a>-->
+<!--					<p></p>-->
+<!--					<div id="overlay">-->
+<!--						<div class="instruction">-->
+<!--							                    &lt;!&ndash; <p> You may check whether you have watch history kept on YouTube by clicking "History" on the left and "Watch history" on the right.</p>-->
+<!--							                    <img src="/assets/images/check-history.png" style="width:40%;height:25%;" alt="How to check watch history"></img>-->
+<!--								                <br>-->
+<!--							                    </br>-->
+<!--							                    <p> Now you can download your YouTube watch history by following the steps:</p> &ndash;&gt;-->
+<!--							<ol style="color: #343434;">-->
+<!--								<li>Visit <a href="https://takeout.google.com/settings/takeout/custom/youtube" target="_blank">YouTube Takeout-->
+<!--									Website</a> and make sure that your google account is signed in.<br></br>-->
+<!--									<img src="/assets/images/step_1.png" style="width:40%;height:25%;" alt="Step 1"></img>-->
+<!--								</li>-->
+
+<!--								<li>Go to "CREATE A NEW ARCHIVE". Instead of choosing "All YouTube data included", deselect all the items but keep "history" and press "Next step".<br></br>-->
+<!--								<img src="/assets/images/step_2.png" style="width:40%;height:25%;" alt="Step 1"></img></li>-->
+
+<!--								<li>Customize archive format to .zip with 2GB size and press “Create Archive”.<br></br>-->
+<!--								<img src="/assets/images/step_3.png" style="width:40%;height:25%;" alt="Step 1"></img></li>-->
+
+<!--								<li>Download the take-out package via the link sent to your email and upload the zip archive here. (The upload zip file size should not exceed 10MB)<br></br>-->
+<!--								<img src="/assets/images/step_4.png" style="width:30%;height:18%;" alt="Step 1"></img></li>-->
+<!--							</ol>-->
+
+<!--							<a onclick="instructionClose()"> <button type="button" class="btn btn-primary"> OK </button></a>-->
+<!--						</div>-->
+<!--					</div>-->
+
+
+
+
+<!--	                <div class="input-group">-->
+<!--	                    <div class="custom-file row">-->
+<!--							<div class="col-md-9"><input type="file" class="custom-file-input" id="file-from-local" name="localFileName"></input></div>-->
+<!--	                        	 &lt;!&ndash; <label class="custom-file-label" for="inputGroupFile01">Choose file</label>  &ndash;&gt;-->
+<!--							<div class="col-md-3"><button type="button" id="submit-local-file" class="btn btn-primary"> Upload </button></div>-->
+<!--								 &lt;!&ndash; <input type="submit" value="Submit">  &ndash;&gt;-->
+<!--	                    </div>-->
+
+<!--						&lt;!&ndash; <div>or-->
+<!--						</div>-->
+<!--							<button type="button" id="submit-drive-file" disabled>Upload from Google Drive</button>-->
+<!--							<label id="file-from-drive" class="custom-file-label"></label>-->
+<!--						<div></div>  &ndash;&gt;-->
+<!--	                </div>-->
+
+	                <!-- <input type="file" name="pic" accept="image/*"> -->
+	                <!-- <input type="button" name="previous" class="previous action-button-previous" value="Previous"/> -->
+<!--					<input type="button" name="next" class="next action-button disabled" id="fileNext" value="Next" onclick="window.location='/upload/report';"/>-->
+
+				<fieldset>
+					<h2> Congratulations! You are all set. </h2>
+	                <h4> Thanks again for participating in our study. You can visualize your YouTube watch history in our platform:</h4>
+					<input type="button" name="next" class="next action-button" id="emailNext" value="Insight Report"/>
+	            </fieldset>
+
+				<fieldset>
+					<h2 class="fs-title">Watch history on YouTube</h2>
+	                <h3 class="fs-subtitle">Your watch history on YouTube is needed for this study. <b style="color:red;text-decoration: underline;font-weight:bold;"> The data collected will be de-identified and anonymized before
+               any analysis. It will be deleted after analysis. </b></h3>
+
+					<p>Please visit <a href="https://takeout.google.com/settings/takeout/custom/youtube" target="_blank">YouTube Takeout
+	                        Website</a> and make sure that your google account is signed in. At the first step, instead of selecting "All YouTube data included", please just select "history". Then, you can create your YouTube take-out, download from your email, and upload here.</p>
+
+					<a onclick="instructionShowUp()"> <button type="button" class="btn btn-info">Step-by-step instruction. </button></a>
+					<p></p>
+					<div id="overlay">
+						<div class="instruction">
+
+							<ol style="color: #343434;">
+								<li>Visit <a href="https://takeout.google.com/settings/takeout/custom/youtube" target="_blank">YouTube Takeout
+									Website</a> and make sure that your google account is signed in.<br></br>
+									<img src="/assets/images/step_1.png" style="width:40%;height:25%;" alt="Step 1"></img>
+								</li>
+
+								<li>Go to "CREATE A NEW ARCHIVE". Instead of choosing "All YouTube data included", deselect all the items but keep "history" and press "Next step".<br></br>
+								<img src="/assets/images/step_2.png" style="width:40%;height:25%;" alt="Step 1"></img></li>
+
+								<li>Customize archive format to .zip with 2GB size and press “Create Archive”.<br></br>
+								<img src="/assets/images/step_3.png" style="width:40%;height:25%;" alt="Step 1"></img></li>
+
+								<li>Download the take-out package via the link sent to your email and upload the zip archive here. (The upload zip file size should not exceed 10MB)<br></br>
+								<img src="/assets/images/step_4.png" style="width:30%;height:18%;" alt="Step 1"></img></li>
+							</ol>
+
+							<a onclick="instructionClose()"> <button type="button" class="btn btn-primary"> OK </button></a>
+						</div>
+					</div>
+
+
+	                <div class="input-group">
+	                    <div class="custom-file row">
+							<div class="col-md-9"><input type="file" class="custom-file-input" id="file-from-local" name="localFileName"></input></div>
+							<div class="col-md-3"><button type="button" id="submit-local-file" class="btn btn-primary"> Upload </button></div>
+	                    </div>
+	                </div>
+					<input type="button" name="next" class="next action-button disabled" id="fileNext" value="Next" onclick="window.location='/upload/report';"/>
+				</fieldset>
+
+
+	        </form>
+	    </div>
+	</div>
+	<!-- /.MultiStep Form -->
+
+
+
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+
+<script type="text/javascript">
+	function instructionShowUp() {
+		var overlay = document.querySelector("#overlay");
+		overlay.style.visibility = "visible";
+		var consent = document.querySelector(".instruction");
+		consent.style.visibility = "visible";
+	}
+	function instructionClose() {
+		var overlay = document.querySelector("#overlay");
+		overlay.style.visibility = "hidden";
+		var consent = document.querySelector(".instruction");
+		consent.style.visibility = "hidden";
+	}
+
+	$("#infoNext").click(function(){
+		var preferredName = $('textarea#preferredName').val();
+		var visitFrequencyLth = document.getElementById('visitFrequency').options.length;
+		var feelAboutYoutubeRecLth = document.getElementById('feelAboutYoutubeRec').options.length;
+		var recWatchFrequencyLth =document.getElementById('recWatchFrequency').options.length;
+		var like = $('textarea#like').val();
+		var dislike = $('textarea#dislike').val();
+		var timezone = document.getElementById('timezone').value;
+		// console.log(document.getElementById('visitFrequency').options)
+
+		var timeslot_vals = []
+    	$('input:checkbox[name="timeSlot"]').each(function() {
+        	if (this.checked) {
+            	timeslot_vals.push(this.value);
+        	}
+    	});
+		var timeSlots = JSON.stringify({timeSlots: timeslot_vals});
+
+		var purpose_vals = []
+		$('input:checkbox[name="purpose"]').each(function() {
+        	if (this.checked) {
+            	purpose_vals.push(this.value);
+        	}
+    	});
+		purposes = JSON.stringify({purposes: purpose_vals});
+		if (preferredName == "" || timezone == "" || visitFrequencyLth < 1 || feelAboutYoutubeRecLth < 1
+		|| recWatchFrequencyLth < 1 || timeslot_vals.length < 1 || purpose_vals.length < 1) {
+			alert("Please select all required fields!");
+			stop_flag = 1;
+			return;
+		} else {
+			stop_flag = 0;
+		}
+
+		const time_span = 60;
+		const selected_num = 30;
+		var a = [];
+		for (var i = 2; i <= time_span; i++) {
+		   a.push(i);
+		}
+		function shuffle(a) {
+			for (let i = a.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[a[i], a[j]] = [a[j], a[i]];
+			}
+			return a;
+		}
+		r = shuffle(a).slice(0, selected_num);
+		r.push(1);
+        console.log(r);
+		function formatDate(d) {
+			console.log(d)
+			var year = d.getFullYear();
+			var month = d.getMonth() + 1;
+			var day = d.getDate();
+
+			if (day < 10) {
+			  day = '0' + day;
+			}
+			if (month < 10) {
+			  month = '0' + month;
+			}
+			return (day + '-' + month + '-' + year);
+		}
+
+		var today = new Date();
+		var selected_dates = [];
+		for (n=0; n < r.length; ++n){
+			var selected_day = new Date();
+			selected_day.setDate(today.getDate() + r[n]);
+			console.log(r[n]);
+			selected_dates.push(formatDate(selected_day));
+		}
+		console.log(selected_dates);
+		var dates = JSON.stringify({dates: selected_dates});
+
+		var form = document.getElementById("msform");
+		var formdata = new FormData(form);
+
+		formdata.append('timeSlots', timeSlots);
+		formdata.append('purposes', purposes);
+		formdata.append('dates', dates);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", "/upload/info");
+		request.send(formdata);
+		fbq('track', 'CompleteInfo');
+	});
+</script>
+
+<script type="text/javascript">
+	var stop_flag = 0;
+	$("#fileNext").click(function(){
+		console.log("here at file Next clicked");
+		console.log($(this).hasClass('disabled'));
+		if($(this).hasClass('disabled')) {
+        	alert('Please upload your takeout file! (Please click the \'Upload\' button after choosing.)');
+			stop_flag = 1;
+			return;
+    	} else {
+			stop_flag = 0;
+			var request = new XMLHttpRequest();
+			var form = document.getElementById("msform");
+			var formdata = new FormData(form);
+			// request.open("POST", "/upload/email");
+			request.open("GET", "/upload/report");
+			request.send(formdata);
+			document.getElementById('quit_containter').style.visibility = "hidden";
+			fbq('track', 'CompleteRegistration');
+		}
+	});
+</script>
+
+<script type="text/javascript">
+	var stop_flag = 0;
+	$("#intentionNext").click(function(){
+		console.log("here at intention Next clicked");
+		var elems = $('[id^=intendOpt]').filter(':checked');
+		if (elems.length < 3){
+			alert("Please select at least 3 topics");
+			stop_flag = 1;
+			return;
+		}
+		else if (elems.length > 10){
+			alert("Please select at most 10 topics");
+			stop_flag = 1;
+			return;
+		}
+		else{
+			stop_flag = 0;
+		}
+
+		vals = []
+		$('input:checkbox[name="intention"]').each(function() {
+        	if (this.checked) {
+            	vals.push(this.value);
+        	}
+    	});
+		intentions = JSON.stringify({intentions: vals});
+
+		var form = document.getElementById("msform");
+		var formdata = new FormData(form);
+		formdata.append('intentions', intentions);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", "/upload/intention");
+		request.send(formdata);
+		fbq('track', 'CompleteIntention');
+	});
+</script>
+
+<script type="text/javascript">
+	var stop_flag = 0;
+	$("#memNext").click(function(){
+		var elems = $('[id^=memOpt]').filter(':checked');
+		console.log(elems.length);
+		if (elems.length < 1){
+			alert("Please select at least 1 topic.");
+			stop_flag = 1;
+			return;
+		}
+		else{
+			stop_flag = 0;
+		}
+
+		vals = []
+		$('input:checkbox[name="memory"]').each(function() {
+        	if (this.checked) {
+            	vals.push(this.value);
+        	}
+    	});
+		memories = JSON.stringify({memories: vals});
+
+		var form = document.getElementById("msform");
+		var formdata = new FormData(form);
+		formdata.append('memories', memories);
+
+		var request = new XMLHttpRequest();
+		request.open("POST", "/upload/memory");
+		request.send(formdata);
+		fbq('track', 'CompleteMemory');
+
+		request = new XMLHttpRequest();
+		request.open("POST", "/upload/email");
+		request.send(formdata);
+		document.getElementById('quit_containter').style.visibility = "hidden";
+		fbq('track', 'CompleteRegistration');
+	});
+</script>
+
+<script type="text/javascript">
+	var stop_flag = 0;
+	$("#quit").click(function(){
+		console.log("Log out clicked");
+		if (confirm("Are you sure you want to opt out？By pressing 'OK', you will quit the survey and your data will be removed.")) {
+			var request = new XMLHttpRequest();
+			request.open("GET", "/quit");
+			request.send(null);
+			request.onreadystatechange = function() {
+				if ( request.readyState === 4 && request.status === 200) {
+					if (request.status == 200) {
+						alert("All of your information has been cleared.")
+						window.location.href = "/";
+					} else {
+						alert("Fail. Please try again.");
+					}
+				}
+			};
+		}
+	});
+</script>
+
+<script type="text/javascript">
+    //jQuery time
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+    $(".next").click(function () {
+    	if (stop_flag > 0) return false;
+        if (animating) return false;
+        animating = true;
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+                //2. bring next_fs from the right(50%)
+                left = (now * 50) + "%";
+                //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({
+                    'transform': 'scale(' + scale + ')',
+                    'position': 'absolute'
+                });
+                next_fs.css({'left': left, 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(".previous").click(function () {
+        if (animating) return false;
+        animating = true;
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        //show the previous fieldset
+        previous_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+                //2. take current_fs to the right(50%) - from 0%
+                left = ((1 - now) * 50) + "%";
+                //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+    $(".submit").click(function () {
+        return false;
+    })
+</script>
+
+<script>
+    function bs_input_file() {
+        $(".input-file").before(
+            function () {
+                if (!$(this).prev().hasClass('input-ghost')) {
+                    var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+                    element.attr("name", $(this).attr("name"));
+                    element.change(function () {
+                        element.next(element).find('input').val((element.val()).split('\\').pop());
+                    });
+                    $(this).find("button.btn-choose").click(function () {
+                        element.click();
+                    });
+                    $(this).find("button.btn-reset").click(function () {
+                        element.val(null);
+                        $(this).parents(".input-file").find('input').val('');
+                    });
+                    $(this).find('input').css("cursor", "pointer");
+                    $(this).find('input').mousedown(function () {
+                        $(this).parents('.input-file').prev().click();
+                        return false;
+                    });
+                    return element;
+                }
+            }
+        );
+    }
+	$(function () {
+        bs_input_file();
+    });
+</script>
+
+<script type="text/javascript">
+	// The Browser API key obtained from the Google API Console.
+	var developerKey = 'AIzaSyDDK_L9y88sbUQBL8PC0wr6zYmNdAik_hw';
+	// The Client ID obtained from the Google API Console.
+	var clientId = '1021222270760-o4opjt5b9ejea92voiiblnaoevfjoelo.apps.googleusercontent.com';
+	var appId = "eighth-effect-221314";
+	// Scope to use to access user's photos.
+	var scope = 'https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.readonly';
+	var pickerApiLoaded = false;
+	var oauthToken;
+	var token;
+	// Use the API Loader script to load google.picker and gapi.auth.
+
+	function onApiLoad() {
+		gapi.load('auth2', onAuthApiLoad);
+        gapi.load('picker', onPickerApiLoad);
+    }
+    function onAuthApiLoad() {
+		var authBtn = document.getElementById('submit-drive-file');
+        authBtn.disabled = false;
+        authBtn.addEventListener('click', function() {
+			gapi.auth2.init({ client_id: clientId }).then(function(googleAuth) {
+            	googleAuth.signIn({ scope: scope }).then(function(result) {
+					handleAuthResult(result.getAuthResponse());
+            	})
+        	})
+		});
+    }
+	function onPickerApiLoad() {
+		pickerApiLoaded = true;
+        createPicker();
+    }
+    function handleAuthResult(authResult) {
+    	if (authResult && !authResult.error) {
+        	token = authResult;
+        	console.dir(authResult);
+          	oauthToken = authResult.access_token;
+          	createPicker();
+        }
+    }
+	// Create and render a Picker object for picking user Photos.
+    function createPicker() {
+		if (pickerApiLoaded && oauthToken) {
+			var view = new google.picker.View(google.picker.ViewId.DOCS);
+            view.setMimeTypes("application/zip");
+            var picker = new google.picker.PickerBuilder()
+              .enableFeature(google.picker.Feature.NAV_HIDDEN)
+              .setAppId(appId)
+              .setOAuthToken(oauthToken)
+              .addView(view)
+              .addView(new google.picker.DocsUploadView())
+              .setDeveloperKey(developerKey)
+              .setCallback(pickerCallback)
+              .build();
+            picker.setVisible(true);
+		}
+	}
+	// A simple callback implementation.
+	function pickerCallback(data) {
+		var url = 'nothing';
+        var docID, docName;
+        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+            var doc = data[google.picker.Response.DOCUMENTS][0];
+            url = doc[google.picker.Document.URL];
+            docID = doc[google.picker.Document.ID];
+            docName = doc[google.picker.Document.NAME];
+            document.getElementById('file-from-drive').innerHTML = docName;
+            postRequest(doc);
+        }
+    }
+	function printFile(fileId) {
+		console.log(fileId);
+		gapi.client.load('drive', 'v3', callback);
+  		var request = gapi.client.drive.files.get({
+    		'fileId': fileId,
+			'alt': media
+  		});
+  		request.execute(function(resp) {
+			console.log(resp);
+    		console.log('Title: ' + resp.title);
+    		console.log('Description: ' + resp.description);
+    		console.log('MIME type: ' + resp.mimeType);
+  	  	});
+	}
+
+    function postRequest(doc) {
+		const data = JSON.stringify({
+        	docID: doc[google.picker.Document.ID],
+            docURL: doc[google.picker.Document.URL],
+		  	docName: doc[google.picker.Document.NAME],
+            token: token
+        });
+		var request = new XMLHttpRequest();
+  		request.open("POST", "/upload/drive");
+		request.setRequestHeader('content-type', 'application/json');
+		request.onreadystatechange = function(){
+        	if ( request.readyState === 4 && request.status === 200) {
+  				if (request.status == 200) {
+  					alert (request.responseText);
+					$('#fileNext').removeClass('disabled');
+  				} else {
+  					alert("Fail. Please try again.");
+  				}
+  			}
+        };
+  		request.send(data);
+    }
+</script>
+
+<script type="text/javascript">
+	$('#file-from-local').bind('change', function() {
+		var sz = this.files[0].size/1024/1024;
+		if (sz > 10) {
+			alert("File size cannot exceed 10MB!");
+			this.value = "";
+			return;
+		}
+		var ext = this.value.match(/\.(.+)$/)[1];
+		var matched = this.value.match(/takeout-.*.zip/);
+		if (!matched) {
+			alert("Please upload a .zip takeout file!");
+			this.value = "";
+			return;
+		}
+	});
+
+	var form = document.getElementById("msform");
+	document.getElementById("submit-local-file").addEventListener("click", function () {
+		var filename = document.getElementById("file-from-local").value;
+		if (filename == "") {
+			alert("Please select your takeout file!");
+		} else {
+			form.action='/upload/local';
+			form.method = "post";
+			form.enctype="multipart/form-data";
+			var formdata = new FormData(form);
+
+			var request = new XMLHttpRequest();
+			request.open("POST", "/upload/local");
+			request.send(formdata);
+
+			request.onreadystatechange = function() {
+	            if ( request.readyState === 4 && request.status === 200) {
+					if (request.status == 200) {
+						alert(request.responseText);
+						$('#fileNext').removeClass('disabled');
+					} else {
+						alert("Fail. Please try again.");
+					}
+				}
+	        };
+		}
+	});
+</script>
+
+<script type="text/javascript" src="https://apis.google.com/js/api.js?onload=onApiLoad"></script>
+
+</body>
+</html>
