@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.524.0",
-    "bl": "^3.0.0",
+    "bl": "^3.0.1",
     "body-parser": "^1.18.3",
     "busboy-body-parser": "^0.3.2",
     "connect-busboy": "0.0.2",
