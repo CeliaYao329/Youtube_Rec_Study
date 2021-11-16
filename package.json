@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.524.0",
+    "aws-sdk": "^2.814.0",
     "bl": "^3.0.0",
     "body-parser": "^1.18.3",
     "busboy-body-parser": "^0.3.2",
