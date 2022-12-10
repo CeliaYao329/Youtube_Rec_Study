@@ -20,7 +20,7 @@
     "csv": "^0.3.7",
     "csv-parser": "^2.3.2",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "formidable": "^1.2.1",
     "googleapis": "^39.2.0",
